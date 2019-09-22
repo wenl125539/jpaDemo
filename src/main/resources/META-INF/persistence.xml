@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <!--需要配置节点persistence-unit
+            持久化节点：
+                name:持久化单元名称
+                transaction-type： 事务管理方式
+                    JTA: 分布式事务管理
+                    RESOURCE_LOCAL : 本地事务管理
+        -->
+    <persistence-unit name="myJpa" transaction-type="RESOURCE_LOCAL">
+        <!--jpa的实现方式-->
+            <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!--可选择配置：配置jpa实现方的配置信息-->
+            <properties>
+                <!--数据库信息
+                        用户名： javax.persisitence.jdbc.user
+                        密码 :  javax.persisitence.jdbc.password
+                        驱动 :  javax.persisitence.jdbc.driver
+                        数据库地址 : javax.persisitence.jdbc.url
+                    -->
+               <!-- <property name="javax.persisitence.jdbc.user" value="root"></property>
+                <property name="javax.persisitence.jdbc.password" value="aa123456"></property>
+                <property name="javax.persisitence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"></property>
+                <property name="javax.persisitence.jdbc.url" value="jdbc:mysql:///jpa"></property>-->
+
+                <!--配置Hibernate方言 -->
+                         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+                         <!--配置数据库驱动 -->
+                         <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
+                         <!--配置数据库用户名 -->
+                         <property name="hibernate.connection.username" value="root" />
+                         <!--配置数据库密码 -->
+                         <property name="hibernate.connection.password" value="aa123456" />
+                         <!--配置数据库url -->
+                         <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jpa?useUnicode=true&amp;characterEncoding=UTF-8" />
+
+                <!--配置jpa实现方的配置信息
+                    显示sql : hibernate.show_sql   : true/false
+                    自动创建数据库表
+                    hibernate.hbm2ddl.auto :
+                         create         程序运行时创建数据库（有表，先删除表 ，再创建）
+                         update         程序运行时 创建表 （有表，不删除表 ，没表 创建表）
+                         none           不创建表
+                -->
+                <property name="hibernate.show_sql" value="true"/>
+                <property name="hibernate.hbm2ddl.auto" value="update"/>
+            </properties>
+    </persistence-unit>
+
+
+
+</persistence>
