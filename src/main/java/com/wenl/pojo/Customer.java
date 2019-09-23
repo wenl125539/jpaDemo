@@ -19,7 +19,10 @@ public class Customer {
      * @Id  声明主键的配置
      * @GeneratedValue
      *          strategy：
-     *                  GenerationType.IDENTITY ：自增
+     *             √     GenerationType.IDENTITY : 自增  *底层数据库必须支持自动增长方式 mysql  √
+     *             √     GenerationType.SEQUENCE : 序列  *底层数据库必须支持序列 oracle        √
+     *                  GenerationType.TABLE    : jpa提供的机制，通过一张数据库表形式帮组完成自增
+     *                  GenerationType.AUTO    ：程序自动选择主键生成策略
      * @Column
      *             name:
      *                  "数据库字段名"
@@ -31,8 +34,6 @@ public class Customer {
 
     @Column(name = "custName")
     private String custName;//客户名称
-
-
 
 
     @Column(name = "custPhone")
